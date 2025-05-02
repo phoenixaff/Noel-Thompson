@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noel Thompson — Casino Exploit Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      text-align: center;
+      margin: 0.5em 0;
+    }
+    .terminal-box {
+      background-color: #111;
+      border: 1px solid #00ff9f;
+      padding: 1.5em;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 20px #00ff9f33;
+      margin: 20vh auto;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+    .terminal-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 1em 2em;
+      background-color: #00ff9f;
+      color: #0a0a0a;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #00c47d;
+    }
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+    }
+    #preloader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #preloader h1 {
+      color: #00ff9f;
+      font-size: 2rem;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .typing {
+      white-space: pre-wrap;
+      border-right: 2px solid #00ff9f;
+      overflow: hidden;
+      width: 100%;
+      animation: typing 4s steps(60, end), blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00ff9f; }
+    }
+  </style>
+</head>
+<body>
+  <div id="preloader"><h1>Initializing system...</h1></div>
+
+  <canvas class="matrix"></canvas>
+  <div class="terminal-box" id="terminalBox">
+    <h1>🕶️ Hacker Mode: ON</h1>
+    <h2>💸 Crack the Casino Bonus Matrix</h2>
+    <p class="typing" id="typedText"></p>
+    <a href="https://t.me/your_bot_link" class="btn" id="launchBtn">🚀 Launch the Exploit Bot</a>
+  </div>
+
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+  <script>
+    const canvas = document.querySelector(".matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const letters = Array(256).join("1").split("");
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ff9f";
+      letters.forEach((y_pos, index) => {
+        const text = String.fromCharCode(3e4 + Math.random() * 33);
+        const x_pos = index * 10;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = y_pos > 758 + Math.random() * 1e4 ? 0 : parseFloat(y_pos) + 10;
+      });
+    };
+    setInterval(draw, 33);
+
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 2000);
+    });
+
+    const terminalBox = document.getElementById("terminalBox");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(terminalBox);
+
+    document.getElementById("launchBtn").addEventListener("click", () => {
+      document.getElementById("clickSound").play();
+    });
+
+    const text = `I’m Noel Thompson. Ex-blackhat.\nNow I hack systems, not people.\n\nCasinos pay to attract players — I just take the money and leave.\n\n❌ No Gambling\n❌ No Risk\n✅ Just Exploits\n\nAccess my private PuzzleBot and start profiting in 24 hours.\nThis isn’t hype — it’s an exploit. And it works.`;
+    const typedText = document.getElementById("typedText");
+    let i = 0;
+    function typeLine() {
+      if (i < text.length) {
+        typedText.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeLine, 20);
+      }
+    }
+    typeLine();
+  </script>
+</body>
+</html>
