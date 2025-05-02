@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noel Thompson Hack Landing</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .terminal {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00;
+            min-height: 400px;
+        }
+        .line {
+            white-space: pre;
+            overflow: hidden;
+            border-right: 0.15em solid #00ff00;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; }
+        }
+        a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="line">Initializing hack sequence for Noel Thompson...</div>
+        <div class="line" style="animation-delay: 3.5s;">Connecting to target server: online-casino.com</div>
+        <div class="line" style="animation-delay: 7s;">Bypassing firewall...</div>
+        <div class="line" style="animation-delay: 10.5s;">Access granted. Downloading data...</div>
+        <div class="line" style="animation-delay: 14s;">Operation complete. Join the Telegram channel for updates:</div>
+        <div class="line" style="animation-delay: 17.5s;"><a href="https://t.me/NoelThompsonChannel" target="_blank">t.me/NoelThompsonChannel</a></div>
+    </div>
+    <script>
+        const lines = document.querySelectorAll('.line');
+        lines.forEach(line => {
+            const delay = parseFloat(getComputedStyle(line).animationDelay) * 1000;
+            setTimeout(() => {
+                line.style.visibility = 'visible';
+            }, delay);
+        });
+    </script>
+</body>
+</html>
