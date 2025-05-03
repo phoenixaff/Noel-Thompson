@@ -2,162 +2,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noel Thompson — Casino Exploit Bot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerome Paolo Bautista - HackBot</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1201301734830787');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1201301734830787&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     body {
-      background-color: #0a0a0a;
-      color: #00ff9f;
-      font-family: 'Share Tech Mono', monospace;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
-    }
-    h1, h2 {
-      text-align: center;
-      margin: 0.5em 0;
-    }
-    .terminal-box {
-      background-color: #111;
-      border: 1px solid #00ff9f;
-      padding: 1.5em;
-      width: 90%;
-      max-width: 800px;
-      box-shadow: 0 0 20px #00ff9f33;
-      margin: 20vh auto;
-      z-index: 1;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease-out;
-    }
-    .terminal-box.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 2em;
-      padding: 1em 2em;
-      background-color: #00ff9f;
-      color: #0a0a0a;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #00c47d;
-    }
-    .matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
       overflow: hidden;
     }
-    #preloader {
+
+    .matrix {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: #000;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #preloader h1 {
-      color: #00ff9f;
-      font-size: 2rem;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    .typing {
-      white-space: pre-wrap;
-      border-right: 2px solid #00ff9f;
+      background: black;
       overflow: hidden;
-      width: 100%;
-      animation: typing 4s steps(60, end), blink-caret 0.75s step-end infinite;
+      z-index: -1;
     }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+
+    canvas {
+      display: block;
     }
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #00ff9f; }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      width: 80%;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .content p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .btn {
+      background-color: #00ff00;
+      border: none;
+      color: black;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
     }
   </style>
 </head>
 <body>
-  <div id="preloader"><h1>Initializing system...</h1></div>
-
-  <canvas class="matrix"></canvas>
-  <div class="terminal-box" id="terminalBox">
-    <h1>🕶️ Hacker Mode: ON</h1>
-    <h2>💸 Crack the Casino Bonus Matrix</h2>
-    <p class="typing" id="typedText"></p>
-    <a href="https://t.me/your_bot_link" class="btn" id="launchBtn">🚀 Launch the Exploit Bot</a>
+  <div class="matrix">
+    <canvas id="matrixCanvas"></canvas>
   </div>
 
-  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+  <div class="content">
+    <h1 id="typewriter"></h1>
+    <p>Jerome Paolo Bautista has deployed a tool.<br>Access the HackBot below.</p>
+    <a href="https://t.me/Jerome_hackbot" class="btn" onclick="playClickSound()">📲 Get on Telegram</a>
+  </div>
+
+  <audio id="clickSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
   <script>
-    const canvas = document.querySelector(".matrix");
+    const canvas = document.getElementById("matrixCanvas");
     const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
+
     canvas.height = window.innerHeight;
-    const letters = Array(256).join("1").split("");
-    const draw = () => {
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00ff9f";
-      letters.forEach((y_pos, index) => {
-        const text = String.fromCharCode(3e4 + Math.random() * 33);
-        const x_pos = index * 10;
-        ctx.fillText(text, x_pos, y_pos);
-        letters[index] = y_pos > 758 + Math.random() * 1e4 ? 0 : parseFloat(y_pos) + 10;
-      });
-    };
-    setInterval(draw, 33);
 
-    window.addEventListener("load", () => {
-      const preloader = document.getElementById("preloader");
-      setTimeout(() => {
-        preloader.style.display = "none";
-      }, 2000);
-    });
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
 
-    const terminalBox = document.getElementById("terminalBox");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(terminalBox);
 
-    document.getElementById("launchBtn").addEventListener("click", () => {
-      document.getElementById("clickSound").play();
-    });
-
-    const text = `I’m Noel Thompson. Ex-blackhat.\nNow I hack systems, not people.\n\nCasinos pay to attract players — I just take the money and leave.\n\n❌ No Gambling\n❌ No Risk\n✅ Just Exploits\n\nAccess my private PuzzleBot and start profiting in 24 hours.\nThis isn’t hype — it’s an exploit. And it works.`;
-    const typedText = document.getElementById("typedText");
-    let i = 0;
-    function typeLine() {
-      if (i < text.length) {
-        typedText.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeLine, 20);
+        drops[i]++;
       }
     }
-    typeLine();
+
+    setInterval(draw, 33);
+
+    // Typing effect
+    const txt = "WELCOME, AGENT";
+    let i = 0;
+    const speed = 100;
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("typewriter").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+
+    // Click sound
+    function playClickSound() {
+      document.getElementById("clickSound").play();
+    }
   </script>
 </body>
 </html>
